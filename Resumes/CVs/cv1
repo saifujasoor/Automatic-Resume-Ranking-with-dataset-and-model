@@ -1,0 +1,128 @@
+KUSHAL PATEL
+Personal Data
+Date of Birth:
+Address:
+Phone:
+email:
+Linkedin Id:
+18 th June, 1996
+B/403 Sagar Sangeet Heights, Sola, Ahmedabad, Gujarat
++91 8401547060
+patelkushal96@gmail.com
+https://www.linkedin.com/in/patel-kushal/
+Career Objectives
+Machine Learning and data science enthusiast with experience of executing data-driven so-
+lutions of real world problems. Looking to use my Machine learning and data science knowl-
+edge to manage statistical machine learning and data-related solutions.
+Education
+2017-2019 Master of Technology in Structural Engineering
+Indian Institute of Technology, Madras
+Gpa: 9.11/10
+2013-2017 Bachelor of Engineering in Civil Engineering
+Vishwakarma Government Engineering College, Gandhinagar
+Gpa: 7.76/10
+2013 Intermediate in Science
+M.B.Patel Gyanjyot High School, Ahmedabad
+Percentage: 74/100
+2011 Matriculation
+M.B.Patel Gyanjyot High School, Ahmedabad
+Percentage: 89.4/100
+Work Experience
+Aug 2019 - Present
+Infinite Civil Solutions PVT. LTD
+Senior Engineer
+Developed design sheet calculations using VBA and Python
+Structure design and co-ordination with other departments
+Academic Experience
+July 2019 Machine Learning - Introduction
+Udacity Nanodegree Program
+May 2020 Deep Learning
+Udacity Nanodegree Program
+July 2020 Data scietist
+Udacity Nanodegree ProgramProjects
+Finding Donors for CharityML
+Trained a model that accurately predicts whether an individual makes more than $50,000. This sort of
+task can arise in a non-profit setting, where organizations survive on donations.
+Prepared the data to use it for modelling which includes transforming Skewed Continuous Features,
+Normalizing numerical features, separating features from target labels, adding dummy variables for
+computation of predictive models and many other data pre-processing steps.
+Trained various supervised learning models on the data and compared each of the model performance
+using different techniques.
+Image Classifier Project
+Trained an image classifier to recognize different species of flowers using deep learning.
+Used a pre-trained network to reduce the training time.
+Applied image pre-processing to reduce the noise and to improve an image data features.
+Used train model for predictions.
+Identify Customer Segments
+The main aim is to identify facets of the population that are most likely to be purchasers of their products.
+Converted the data into usable form by applying data analysis and data cleaning.
+Applied dimensionality reduction techniques to identify relationships between variables in the dataset
+which result in the creation of a new set of variables that account for those correlations.
+Adopted an unsupervised learning techniques to organize the general population into clusters.
+Used those clusters to see which of them comprise the main user base for the company.
+Predicting Bike-Sharing Patterns
+Trained a multi-layer neural network to predict the number of bike-share users on a given day.
+Prepared data for modelling by scaling numerical features, one hot encoding of categorical features.
+Tuned Hyper-parameters such as number of iterations, learning rate, hidden nodes in such a way that
+training loss and validation loss are less than 0.09 and 0.18 respectively.
+Showed a good result in predicting daily bike rentals on normal days, but not so good on special days
+due to less yearly data in training set.
+Dog Breed Classifier
+Trained an image classifier using pre-trained resnet50 architecture to classify dog breed with an accuracy
+of 89 %
+Applied image pre-processing to reduce noise and improve image data features.
+Generate TV Scripts
+Trained an RNN model with LSTM on Seinfeld TV scripts to generate fake TV scripts.
+Tokenized punctuations and created dictionaries from word to index and index to word.
+Created Embedding layer, LSTM layer and Linear layer sequentially to predict the most probable next
+word.
+Generate Faces
+Trained a Deep Convolutional Generative Adversarial Network (DCGAN) model on a dataset of faces to
+generate new images of fake human faces that look as realistic as possible.
+Because of biased samples, generated images are lighter in shade, even the brown faces are bit lighter
+and Samples with sunglasses lead to some strange effects in the generated image.Courses and Certificates
+NPTEL
+NPTEL
+Coursera
+Coursera
+Coursera
+Coursera
+Coursera
+Coursera
+Coursera
+Coursera
+Data Science for Engineers
+Machine Learning for Engineering and Science Applications
+Programming for Everybody (Getting Started with Python)
+Python Data Structures
+Python for Data Science, AI and Development
+Data Analysis with Python
+Neural Networks and Deep Learning
+Improving Deep Neural Networks
+Convolutional Neural Networks
+Sequence Models
+Achievements
+April 2019
+April 2017
+Feb 2017
+Honoured with gold-medal in Data Science for Engineers NPTEL course
+Runner up in “OPEN HOUSE’17” (A State Level Project Competition) held at
+VGEC, Ahmedabad, Gujarat
+Runner up in “QUISTRUC’17” (A State Level Quiz Competition) held at
+CHARUSAT, Changa, Gujarat
+Computer Skills
+Language:
+Software:
+Libraries:
+C, Python, sql
+matlab
+Numpy, Pandas, Scikit-Learn, Matplotlib, seaborn, PyTorch
+Languages
+English:
+Gujarati:
+Hindi:
+Full professional proficiency
+Native or bilingual proficiency
+Native or bilingual proficiency
+Interests and Activities
+Listening Music, Watching Cricket
