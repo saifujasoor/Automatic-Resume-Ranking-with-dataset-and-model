@@ -130,7 +130,7 @@ Inside **Model** directory the **stackexchange** folder and **stackexchange_mode
 - **stackexchange :** Its a directory that contains all the unzip stackoverflow datasets.
 - **sentences.txt :** Each and every subdirectory of dataset in stackexchange directory contains this file, It was extracted from the corresponding paras.txt which generated earlier using the code ***sentence_Extraction.ipynb***. The process took around 24.5 hours to complete.
 **Note**
-- For testing purpose you can download 
+- For testing purpose you can download a small portion (3 or 4 GB) of StackExchange Network Posts dataset [dataset.](https://archive.org/details/stackexchange) and preform the above procedures along with trainig your own model  if you get enough confidence  so do it with all the dataset.
 
 ## Filter
 - **CV_ranking.ipynb :** Notebook for ranking the CVs according to Job Description.
