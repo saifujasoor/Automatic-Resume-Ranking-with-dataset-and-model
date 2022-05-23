@@ -10,16 +10,16 @@ The project uses techniques in Machine Learning and Natural Language Processing 
 ## Division of the report
 The report has been divided into 4 sections.
 ## 1. Data Collection
-Mainly used three datasets:-
+**Mainly used three datasets:-**
 - StackExchange Network Posts dataset
 - Job Descriptions dataset 
 - Resumes Collection 
 
-**StackExchange Network Posts**
+**StackExchange Network Posts dataset**
 - This dataset was required to be trained and load to the word2vec model.StackExchange network dumps it's data in xml format under Creative Commons License. One can find a download link for the dataset(80 GB) 
 - Dataset link [on Internet Archive.](https://archive.org/details/stackexchange)
 
-- This is an anonymized dump of all user-contributed content on the Stack Exchange network. Each site is formatted as a separate archive consisting of XML files zipped via 7-zip using bzip2 compression. Some of that datasets i mentioned bellow:
+- This is an anonymized dump of all user-contributed content on the Stack Exchange network. Each site is formatted as a separate archive consisting of XML files zipped via 7-zip using bzip2 compression. Some of that datasets contents i mentioned bellow:
 ```
 3dprinting.stackexchange.com.7z                   13-Jun-2017 13:49     2.8M
 Sites.xml                                         13-Jun-2017 15:53     327.4K
@@ -50,11 +50,11 @@ bricks.stackexchange.com.7z                       13-Jun-2017 13:58     4.6M
 
 **Rusumes**
 - So, a Python Script(collectCV.py) was used to collect around 250 resumes of applicants for positions like 'Software Developer' , 'Data Scientist', 'Web Developer' etc.
-- You can collect more Cvs from any free websites in text format using ( **collect.py**) python files, placed in the data folder.
+- You can collect more Cvs from any free websites in text format using ( **collect.py**) python files.
 - This dataset was required to test the trained word2vec model. Among these resumes, best matching resumes should be filtered out.
 
 **2. Data Extraction**
-- unzip all the downloaded dataset of stackexchange using **zipextract.py** and place the unzipped files inside a folder named **stackexchage**.
+- unzip all the downloaded dataset of stackexchange network Posts dataset using **zipextract.py** and place the unzipped files inside a directory named **stackexchage**.
 - Each  subdirectory inside stackexchange folder includes Posts, Users, Votes, Comments, PostHistory and PostLinks (all in .xml files).
 
 
@@ -63,22 +63,13 @@ bricks.stackexchange.com.7z                       13-Jun-2017 13:58     4.6M
 1. Download and unzip the StackExchange Network Posts dataset( Follow the above instruction)
 2. Each subdirectory of  dataset conatins posts.xml therefore  Generate text file named (**paras.txt**) using **Extraction_from_posts.ipynb** file.
 3. Generate another text file named (**sentences.txt**) using **Sentence_Extraction.ipynb** file.
-4. Train the model using **Model_Training.ipynb** file after successfully run it will generate a model named **stackexchange_model** in CWD.
+4. Train the model using **Model_Training.ipynb** file after successfully run it will generate a trained model named **stackexchange_model** in CWD.
 
 ## How to use trained model for CV Ranking and word2vec 
 1. Generate CSV file named *prc_data.csv* using **Section_Extraction.ipynb**
-2. All the model and cleaned data are ready therefore to run **CV_ranking.ipynb**
-3. Run **With Word2Vec.ipynb** to understand better concept of word2vec using stackexchange model
-
-# Requirement of training our own models
-- There are pre-trained models available both in gensim and spaCy packages in Python. These models are trained over Google News Data. This implies that they are not suitable for the technically aware context distinction required for this project. For e.g. HTML and Ruby may have higher similarity value in these models than the model we trained.
-
-- Therefore,a dataset was required which was both technically aware and also has sufficient amount of unique words present for the non-technical functioning of the model.
-
-- The dataset used to train Word2Vec model becomes more crucial considering the fact that Word2Vec models can be retrained over and over, however, new Vocabulary cannot be added to the model.
-- Therefore, stackexchange network data was used and trained my own model.
-- Used the gensim implementation of Word2Vec to train my **stackexchange_model** model.
-- Run both files **With Word2Vec.ipynb** (used my own trained model) and **Using Spacy Model.ipynb** (used pretrained model) to see the difference and performance of two different models.
+2. All the model and cleaned data are ready therefore for cv ranking.
+3. You can rank the resumes by **CV_ranking.ipynb** file.
+4. Run **With Word2Vec.ipynb** to understand better concept of word2vec using trained model **stackexchange_model** model.
 
 
 
@@ -129,8 +120,9 @@ Inside **Model** directory the **stackexchange** folder and **stackexchange_mode
 - **paras.txt :** Each and every subdirectory of dataset in stackexchange directory contains this file which is  paragraph in html tags file format, It was extracted from  ```Posts.xml``` using the code ***Extraction_from_posts.ipynb***
 - **stackexchange :** Its a directory that contains all the unzip stackoverflow datasets.
 - **sentences.txt :** Each and every subdirectory of dataset in stackexchange directory contains this file, It was extracted from the corresponding paras.txt which generated earlier using the code ***sentence_Extraction.ipynb***. The process took around 24.5 hours to complete.
+
 **Note**
-- For testing purpose you can download a small portion (3 or 4 GB) of StackExchange Network Posts dataset [dataset.](https://archive.org/details/stackexchange) and preform the above procedures along with trainig your own model  if you get enough confidence  so do it with all the dataset.
+- For testing purpose you can download a small portion (3 or 4 GB) of StackExchange Network Posts dataset [Download.](https://archive.org/details/stackexchange) and preform the above procedures along with trainig your own model  if you get enough confidence  so do it with all the dataset.
 
 ## Filter
 - **CV_ranking.ipynb :** Notebook for ranking the CVs according to Job Description.
@@ -160,15 +152,14 @@ each unique word in the corpus being assigned a corresponding vector in the spac
 vector space such that words that share common contexts in the corpus are located in close proximity to one another in the
 space.
 
-## Requirement of training our own models
+# Requirement of training our own models
+- There are pre-trained models available both in gensim and spaCy packages in Python. These models are trained over Google News Data. This implies that they are not suitable for the technically aware context distinction required for this project. For e.g. HTML and Ruby may have higher similarity value in these models than the model we trained.
 
-- There are pre-trained models available both in gensim and spaCy packages in Python. These models are trained over
-Google News Data. This implies that they are not suitable for the technically aware context distinction required for this
-project. For e.g. HTML and Ruby may have higher similarity value in these models than the model we trained.
-- Therefore, we required a dataset which was both technically aware and also has sufficient amount of unique words
-present for the non-technical functioning of the model.
-- Therefore, we decide to use the stackexchange/ network data.
-- We used the gensim implementation (in Python) of Word2Vec to train our model.
+- Therefore,a dataset was required which was both technically aware and also has sufficient amount of unique words present for the non-technical functioning of the model.
+
+- The dataset used to train Word2Vec model becomes more crucial considering the fact that Word2Vec models can be retrained over and over, however, new Vocabulary cannot be added to the model.
+- Therefore, stackexchange network data was used and trained my own model.
+- Run both files **With Word2Vec.ipynb** (used my own trained model) and **Using Spacy Model.ipynb** (used pretrained model) to see the difference and performance of two different models.
 
 ## Cleaning and Extracting data
 - From the stackexchange/ dataset the Posts.xml for each site was used to extract each Post irrespective of whether
