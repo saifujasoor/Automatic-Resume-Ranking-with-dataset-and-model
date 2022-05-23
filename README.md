@@ -160,7 +160,11 @@ space.
 
 - The dataset used to train Word2Vec model becomes more crucial considering the fact that Word2Vec models can be retrained over and over, however, new Vocabulary cannot be added to the model.
 - Therefore, stackexchange network data was used and trained my own model.
+-
 - Run both files **With Word2Vec.ipynb** (used my own trained model) and **Using Spacy Model.ipynb** (used pretrained model) to see the difference and performance of two different models.
+
+
+
 
 ## Cleaning and Extracting data
 - From the stackexchange/ dataset the Posts.xml for each site was used to extract each Post irrespective of whether
