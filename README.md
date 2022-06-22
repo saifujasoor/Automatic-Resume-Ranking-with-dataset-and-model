@@ -8,8 +8,13 @@ The result achieved by assigning a score to each CV by intelligently comparing t
 The project uses techniques in Machine Learning and Natural Language Processing to automate the procedure.
 
 ## Division of the report
-The report has been divided into 4 sections.
-## 1. Data Collection
+The report has been divided into 4 sections: 
+**1. Data Collection** 
+**2. Training Word2Vec Model** 
+**3. Extracting sections** 
+**4. Assigning scores for ranking** 
+
+## Section 1. Data Collection
 **Mainly used three datasets:-**
 - StackExchange Network Posts dataset
 - Job Descriptions dataset 
@@ -37,12 +42,66 @@ The report has been divided into 4 sections.
 - You can collect more Cvs from any free websites in text format using ( **collect.py**) python files.
 - This dataset was required to test the trained word2vec model. Among these resumes, best matching resumes should be filtered out.
 
-**2. Data Extraction**
-- unzip all the downloaded dataset of stackexchange network Posts dataset using **zipextract.py** and place the unzipped files inside a directory named **stackexchage**.
-- Each  subdirectory inside stackexchange folder includes Posts, Users, Votes, Comments, PostHistory and PostLinks (all in .xml files).
+
+## Section 2. Training Word2Vec Model
+
+Word2Vec models are shallow, two-layer neural networks that are trained to reconstruct linguistic contexts of words.
+Word2vec takes as its input a large corpus of text and produces a vector space, typically of several hundred dimensions, with
+each unique word in the corpus being assigned a corresponding vector in the space. Word vectors are positioned in the
+vector space such that words that share common contexts in the corpus are located in close proximity to one another in the
+space.
+
+### Requirement of training our own models
+- There are pre-trained models available both in gensim and spaCy packages in Python. These models are trained over Google News Data. This implies that they are not suitable for the technically aware context distinction required for this project. For e.g. HTML and Ruby may have higher similarity value in these models than the model we trained.
+
+- Therefore,a dataset was required which was both technically aware and also has sufficient amount of unique words present for the non-technical functioning of the model.
+
+- The dataset used to train Word2Vec model becomes more crucial considering the fact that Word2Vec models can be retrained over and over, however, new Vocabulary cannot be added to the model.
+- Therefore, stackexchange network data was used and trained my own model.
+-
+- Run both files **With Word2Vec.ipynb** (used my own trained model) and **Using Spacy Model.ipynb** (used pretrained model) to see the difference and performance of two different models.
+
+### Cleaning and Extracting data
+- From the stackexchange/ dataset the Posts.xml for each site was used to extract each Post irrespective of whether
+it's a Question or an Answer. These Posts were extracted as HTML para tags and saved as paras.txt in the
+corresponding subfolder of the site.
+- At this stage, each subdirectory of StackExchange/ which corresponds to the site under StackExchange network, has a
+new file called paras.txt .
+- For training the Word2Vec model, we required a sequence of sentences to be streamed from the disk. Each sentence is
+represented as a list i.e. each element of this list is the word of the sentence.
+So, the paras.txt files were used to extract sentences using BeautifulSoup(a Python Library), and saved into
+sentences.txt (for each site), such that the final result is free of formatting and mathematics, code etc.
+- These sentences were streamed into the Word2Vec train method for training the model.
+
+### Generated Word2Vec Word Embeddings
+- Each word is represented as a 300-sized numpy array (vector).
+- Collected 1237328 unique words from a corpus of 565919447 raw words and 32701720 sentences.
+
+## Section 3. Extracting sections
+- We have some collection of words that are usually the heading in the resumes. For example 'education', 'academic', 'school', 'study', etc will mark the start of the education section
+- We iterate over all lines of all resumes, one by one.
+- For each line, first, we remove all the blank lines or the lines containing just symbols. Some resumes have a line denoted
+to just asterisks or dashes.
+- Next, we categorize each line into one of the four sections. This is done by calculating its similarity to the existing words.
+If the similarity is higher than the threshold, we update the section and mark that point, on the other hand, if the similarity
+if below the threshold, we continue with the previous section.
+- This enables us to separate the sections with good enough accuracy.
+- Finally, we write each section of a resume in a .csv file after removing the stop words and doing lemmatization
+
+
+## Section 4. Assigning scores for ranking
+- For a given Job Description, we remove all the stop words and do lemmatization, to get a selected few keywords.
+- For each keyword found, we find 5 similar words and their corresponding similarity.
+- Now, we find tf-idf for each word, that we got in step 2.
+- The score of the CV is the sum of tf-idf * similarity for all words we got in step 2.
 
 
 # How to use
+
+### Data Extraction
+- unzip all the downloaded dataset of stackexchange network Posts dataset using **zipextract.py** and place the unzipped files inside a directory named **stackexchage**.
+- Each  subdirectory inside stackexchange folder includes Posts, Users, Votes, Comments, PostHistory and PostLinks (all in .xml files).
+
 ## steps
 1. Download and unzip the StackExchange Network Posts dataset( Follow the above instruction)
 2. Each subdirectory of  dataset conatins posts.xml therefore  Generate text file named (**paras.txt**) using **Extraction_from_posts.ipynb** file.
@@ -143,62 +202,6 @@ For example:
 - **pdf2txt.py :** Python scrtpt for converting a `.pdf` file to `.txt`.
 - **zipextract.py :** Python script for extracting compressed files in `7z`.
 
-# Summery 
-
-## Training Word2Vec Model
-
-Word2Vec models are shallow, two-layer neural networks that are trained to reconstruct linguistic contexts of words.
-Word2vec takes as its input a large corpus of text and produces a vector space, typically of several hundred dimensions, with
-each unique word in the corpus being assigned a corresponding vector in the space. Word vectors are positioned in the
-vector space such that words that share common contexts in the corpus are located in close proximity to one another in the
-space.
-
-# Requirement of training our own models
-- There are pre-trained models available both in gensim and spaCy packages in Python. These models are trained over Google News Data. This implies that they are not suitable for the technically aware context distinction required for this project. For e.g. HTML and Ruby may have higher similarity value in these models than the model we trained.
-
-- Therefore,a dataset was required which was both technically aware and also has sufficient amount of unique words present for the non-technical functioning of the model.
-
-- The dataset used to train Word2Vec model becomes more crucial considering the fact that Word2Vec models can be retrained over and over, however, new Vocabulary cannot be added to the model.
-- Therefore, stackexchange network data was used and trained my own model.
--
-- Run both files **With Word2Vec.ipynb** (used my own trained model) and **Using Spacy Model.ipynb** (used pretrained model) to see the difference and performance of two different models.
-
-
-
-
-## Cleaning and Extracting data
-- From the stackexchange/ dataset the Posts.xml for each site was used to extract each Post irrespective of whether
-it's a Question or an Answer. These Posts were extracted as HTML para tags and saved as paras.txt in the
-corresponding subfolder of the site.
-- At this stage, each subdirectory of StackExchange/ which corresponds to the site under StackExchange network, has a
-new file called paras.txt .
-- For training the Word2Vec model, we required a sequence of sentences to be streamed from the disk. Each sentence is
-represented as a list i.e. each element of this list is the word of the sentence.
-So, the paras.txt files were used to extract sentences using BeautifulSoup(a Python Library), and saved into
-sentences.txt (for each site), such that the final result is free of formatting and mathematics, code etc.
-- These sentences were streamed into the Word2Vec train method for training the model.
-
-## Generated Word2Vec Word Embeddings
-- Each word is represented as a 300-sized numpy array (vector).
-- Collected 1237328 unique words from a corpus of 565919447 raw words and 32701720 sentences.
-
-## Extracting sections
-- We have some collection of words that are usually the heading in the resumes. For example 'education', 'academic', 'school', 'study', etc will mark the start of the education section
-- We iterate over all lines of all resumes, one by one.
-- For each line, first, we remove all the blank lines or the lines containing just symbols. Some resumes have a line denoted
-to just asterisks or dashes.
-- Next, we categorize each line into one of the four sections. This is done by calculating its similarity to the existing words.
-If the similarity is higher than the threshold, we update the section and mark that point, on the other hand, if the similarity
-if below the threshold, we continue with the previous section.
-- This enables us to separate the sections with good enough accuracy.
-- Finally, we write each section of a resume in a .csv file after removing the stop words and doing lemmatization
-
-
-## Assigning scores for ranking
-- For a given Job Description, we remove all the stop words and do lemmatization, to get a selected few keywords.
-- For each keyword found, we find 5 similar words and their corresponding similarity.
-- Now, we find tf-idf for each word, that we got in step 2.
-- The score of the CV is the sum of tf-idf * similarity for all words we got in step 2.
 
 # Resources
 - https://spacy.io/
